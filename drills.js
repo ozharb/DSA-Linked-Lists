@@ -194,25 +194,75 @@ function size(list) {
     }
     return size
 }
-function findPrevious(list, item){
+function findPrevious(list, item) {
     let counter = 0;
-       let node = list.head;
-       while(node.value !== item) {
-           node = node.next;
-           counter ++
-       }
-       return getAt(list,counter-1)
+    let node = list.head;
+    while (node.value !== item) {
+        node = node.next;
+        counter++
+    }
+    return getAt(list, counter - 1)
 }
 
-  function getAt(list, index){
-       let counter = 0;
-       let node = list.head;
-       while(node) {
-           if (counter === index){
-               return node
-           }
-           counter ++;
-           node = node.next;
-       }
-       return null
-   }
+function getAt(list, index) {
+    let counter = 0;
+    let node = list.head;
+    while (node) {
+        if (counter === index) {
+            return node
+        }
+        counter++;
+        node = node.next;
+    }
+    return null
+}
+
+function findLast(list) {
+    let node = list.head
+    if (node === null) {
+        return node
+    }
+    else {
+
+        while (node.next !== null) {
+            node = node.next
+        }
+        return node
+    }
+
+}
+// 4. Mystery program
+// Analyze the following function (without running it in an IDE) to determine what problem it is trying to solve. What is the time complexity of this algorithm? 
+// The program removes duplicate values.  O(N2)
+
+function WhatDoesThisProgramDo(lst) {
+    let current = lst.head;
+    while (current !== null) {
+        let newNode = current;
+        while (newNode.next !== null) {
+            if (newNode.next.value == current.value) {
+
+                newNode.next = newNode.next.next;
+            }
+            else {
+                newNode = newNode.next;
+            }
+        }
+        current = current.next;
+    }
+}
+
+function reverse(head) {
+    let prev = null;
+    let curr = head;
+    let nextTemp = null;
+
+    while (head !== null) {
+        next = head.next;
+        head.next = prev
+        prev = head;
+        head = next;
+      
+    }
+    return prev;
+}
